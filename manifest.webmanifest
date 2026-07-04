@@ -1,13 +1,13 @@
 {
-  "name": "筋トレ管理",
-  "short_name": "筋トレ管理",
+  "name": "WORKOUT LOGLOG",
+  "short_name": "LOGLOG",
   "description": "体重とトレーニングだけを記録する、いちばんシンプルな筋トレ・ダイエット記録アプリ",
   "lang": "ja",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0f1419",
-  "theme_color": "#0f1419",
+  "background_color": "#faf6f2",
+  "theme_color": "#faf6f2",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },

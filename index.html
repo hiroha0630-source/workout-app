@@ -4,27 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="体重とトレーニングだけを記録する、いちばんシンプルな筋トレ・ダイエット記録アプリ。データはCSVでエクスポートでき、成果の証明に使えます。">
-<meta name="theme-color" content="#0f1419">
+<meta name="theme-color" content="#faf6f2">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23f0705a'/><text x='50' y='66' font-size='44' font-weight='bold' fill='white' text-anchor='middle' font-family='sans-serif'>LL</text></svg>">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>筋トレ管理 - シンプル記録アプリ</title>
+<title>WORKOUT LOGLOG - シンプル筋トレ・ダイエット記録</title>
 <style>
   :root {
-    --bg: #0f1419;
-    --surface: #1a2029;
-    --surface-2: #232c38;
-    --border: #2d3846;
-    --text: #e6edf3;
-    --muted: #8b98a9;
-    --accent: #ff6b35;
-    --accent-dim: #cc5528;
-    --green: #3fb950;
-    --blue: #4a9eff;
-    --red: #ff5c5c;
-    --radius: 14px;
+    --bg: #faf6f2;
+    --surface: #ffffff;
+    --surface-2: #f5ede7;
+    --border: #eee2d9;
+    --text: #443931;
+    --muted: #a5958a;
+    --accent: #f0705a;
+    --accent-dim: #d95c47;
+    --accent-soft: #ffb199;
+    --green: #4caf7d;
+    --blue: #4da3a3;
+    --red: #e05555;
+    --radius: 16px;
+    --shadow: 0 2px 12px rgba(190, 150, 125, .10);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body {
@@ -37,11 +39,17 @@
   header {
     padding: 20px 16px 12px;
     position: sticky; top: 0;
-    background: linear-gradient(180deg, var(--bg) 70%, transparent);
+    background: var(--bg);
     z-index: 10;
   }
-  header h1 { font-size: 22px; display: flex; align-items: center; gap: 8px; }
-  header .date { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .logo { display: flex; flex-direction: column; line-height: 1.05; }
+  .logo .logo-top { font-size: 11px; font-weight: 600; letter-spacing: .38em; color: var(--muted); }
+  .logo .logo-main {
+    font-size: 27px; font-weight: 800; letter-spacing: .05em;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  header .date { color: var(--muted); font-size: 13px; margin-top: 4px; }
   main { padding: 0 16px; max-width: 640px; margin: 0 auto; }
 
   .card {
@@ -50,6 +58,7 @@
     border-radius: var(--radius);
     padding: 16px;
     margin-bottom: 14px;
+    box-shadow: var(--shadow);
   }
   .card h2 { font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
 
@@ -60,6 +69,7 @@
     margin-bottom: 14px;
     overflow: hidden;
     transition: border-color .2s;
+    box-shadow: var(--shadow);
   }
   .exercise.done { border-color: var(--green); }
   .ex-head {
@@ -119,7 +129,7 @@
   .empty .big { font-size: 40px; margin-bottom: 10px; }
 
   .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 10px; text-align: center; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 10px; text-align: center; box-shadow: var(--shadow); }
   .stat .num { font-size: 24px; font-weight: 700; color: var(--accent); }
   .stat .lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
@@ -132,7 +142,7 @@
   .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
   .bar-label { font-size: 11px; color: var(--muted); width: 44px; flex-shrink: 0; }
   .bar-track { flex: 1; height: 22px; background: var(--surface-2); border-radius: 6px; overflow: hidden; }
-  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent-dim), var(--accent)); border-radius: 6px; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent-soft), var(--accent)); border-radius: 6px; }
   .bar-val { font-size: 11px; color: var(--text); width: 60px; text-align: right; flex-shrink: 0; }
 
   nav {
@@ -140,6 +150,7 @@
     background: var(--surface); border-top: 1px solid var(--border);
     display: flex; padding: 6px 0 max(6px, env(safe-area-inset-bottom));
     z-index: 20;
+    box-shadow: 0 -4px 16px rgba(190, 150, 125, .12);
   }
   nav button {
     flex: 1; background: none; border: none; color: var(--muted);
@@ -183,7 +194,7 @@
   .goal-head .big span { color: var(--accent); }
   .goal-sub { font-size: 12px; color: var(--muted); }
   .progress-track { height: 12px; background: var(--surface-2); border-radius: 8px; overflow: hidden; margin: 8px 0 6px; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: 8px; transition: width .4s; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-soft), var(--accent)); border-radius: 8px; transition: width .4s; }
   .goal-foot { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
 
   /* 設定 */
@@ -192,7 +203,7 @@
   .field input {
     width: 100%; background: var(--surface-2); border: 1px solid var(--border);
     border-radius: 9px; color: var(--text); padding: 11px 12px; font-size: 15px;
-    color-scheme: dark;
+    color-scheme: light;
   }
   .field input:focus { outline: none; border-color: var(--accent); }
   .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -226,7 +237,7 @@
 </head>
 <body>
 <header>
-  <h1>💪 筋トレ管理</h1>
+  <h1 class="logo"><span class="logo-top">WORK OUT</span><span class="logo-main">LOGLOG</span></h1>
   <div class="date" id="todayLabel"></div>
 </header>
 
@@ -309,12 +320,12 @@
       <input type="file" id="impFile" accept=".json,application/json" style="display:none">
       <button class="btn-ghost btn-danger" id="wipeAll">🗑 全データを削除</button>
     </div>
-    <div class="ver">筋トレ管理 v1.0 ・ データはこの端末にのみ保存されます</div>
+    <div class="ver">WORKOUT LOGLOG v1.1 ・ データはこの端末にのみ保存されます</div>
   </section>
 </main>
 
 <nav>
-  <button class="active" data-tab="today"><span class="ico">🏋️</span>今日</button>
+  <button class="active" data-tab="today"><span class="ico">🏋️‍♀️</span>今日</button>
   <button data-tab="history"><span class="ico">📋</span>記録</button>
   <button data-tab="stats"><span class="ico">📊</span>統計</button>
   <button data-tab="settings"><span class="ico">⚙️</span>設定</button>
@@ -478,7 +489,7 @@ function renderToday() {
   const box = document.getElementById('exList');
   box.innerHTML = '';
   if (list.length === 0) {
-    box.innerHTML = '<div class="empty"><div class="big">🏋️</div>今日のメニューを追加しよう</div>';
+    box.innerHTML = '<div class="empty"><div class="big">🌱</div>今日のメニューを追加しよう</div>';
     return;
   }
   list.forEach(ex => {
@@ -767,7 +778,7 @@ function buildReport() {
   }));
   const top = Object.keys(best).sort((a, b) => best[b] - best[a]).slice(0, 3);
   if (top.length) lines.push('ベスト: ' + top.map(n => `${n} ${best[n]}kg`).join(' / '));
-  lines.push('— 筋トレ管理アプリで記録');
+  lines.push('— WORKOUT LOGLOG で記録');
   return lines.join('\n');
 }
 async function copyReport() {
