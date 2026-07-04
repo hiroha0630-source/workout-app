@@ -1,5 +1,5 @@
 // オフラインでも起動できるようにするサービスワーカー
-const CACHE = 'workout-v3';
+const CACHE = 'workout-v4';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
