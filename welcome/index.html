@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="WORKOUT LOGLOG - 登録不要・広告なし・完全無料。体重とトレーニングを記録するだけの、いちばんシンプルな筋トレ・ダイエットアプリ。">
+<meta name="theme-color" content="#faf6f2">
+<meta property="og:title" content="WORKOUT LOGLOG - いちばんシンプルな筋トレ・ダイエット記録アプリ">
+<meta property="og:description" content="登録不要・広告なし・完全無料。記録するだけ。データはあなたのスマホの中だけ。">
+<link rel="icon" href="../icon-192.png">
+<title>WORKOUT LOGLOG - 無料のシンプル筋トレ・ダイエット記録アプリ</title>
+<style>
+  :root {
+    --bg: #faf6f2; --surface: #fff; --surface-2: #f5ede7; --border: #eee2d9;
+    --text: #443931; --muted: #a5958a;
+    --accent: #f0705a; --accent-dim: #d95c47; --accent-soft: #ffb199;
+    --green: #4caf7d; --blue: #4da3a3;
+    --radius: 16px; --shadow: 0 2px 12px rgba(190,150,125,.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+  .hero { text-align: center; padding: 60px 0 40px; }
+  .logo-top { font-size: 14px; font-weight: 600; letter-spacing: .4em; color: var(--muted); }
+  .logo-main {
+    font-size: 52px; font-weight: 800; letter-spacing: .04em; line-height: 1.1;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .tagline { font-size: 18px; margin-top: 14px; }
+  .sub { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  .btn {
+    display: inline-block; padding: 15px 32px; border-radius: 30px; font-size: 16px; font-weight: 700;
+    text-decoration: none; transition: transform .15s;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn-main { background: linear-gradient(90deg, var(--accent), var(--accent-soft)); color: #fff; box-shadow: 0 4px 16px rgba(240,112,90,.35); }
+  .btn-sub { background: var(--surface); color: var(--text); border: 1px solid var(--border); box-shadow: var(--shadow); }
+  .free-note { margin-top: 14px; font-size: 13px; color: var(--muted); }
+
+  section { padding: 40px 0; }
+  h2 { text-align: center; font-size: 24px; margin-bottom: 28px; }
+  h2 .em { color: var(--accent); }
+
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+  .feature {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px 18px; box-shadow: var(--shadow); text-align: center;
+  }
+  .feature .ico { font-size: 34px; }
+  .feature h3 { font-size: 16px; margin: 10px 0 6px; }
+  .feature p { font-size: 13px; color: var(--muted); }
+
+  .demo { display: flex; justify-content: center; }
+  .phone {
+    width: 340px; height: 640px; border-radius: 42px; padding: 14px;
+    background: #443931; box-shadow: 0 18px 50px rgba(68,57,49,.30);
+  }
+  .phone iframe { width: 100%; height: 100%; border: none; border-radius: 30px; background: var(--bg); }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 720px; margin: 0 auto; }
+  .step-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+  .step-card h3 { font-size: 17px; margin-bottom: 12px; }
+  .step-card ol { padding-left: 20px; font-size: 14px; }
+  .step-card li { margin-bottom: 8px; }
+  .step-card .note { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  .dl-box, .fb-box {
+    max-width: 640px; margin: 0 auto; text-align: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 30px 24px; box-shadow: var(--shadow);
+  }
+  .dl-box p, .fb-box p { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+
+  .legal { max-width: 720px; margin: 0 auto; font-size: 12px; color: var(--muted); }
+  .legal h3 { font-size: 14px; color: var(--text); margin: 18px 0 6px; }
+  footer { text-align: center; padding: 30px 0 40px; color: var(--muted); font-size: 12px; }
+  @media (max-width: 480px) {
+    .logo-main { font-size: 40px; }
+    .phone { width: 300px; height: 580px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero wrap">
+  <div class="logo-top">WORK OUT</div>
+  <div class="logo-main">LOGLOG</div>
+  <p class="tagline">記録するだけ。いちばんシンプルな<br>筋トレ・ダイエット記録アプリ</p>
+  <p class="sub">登録不要 ・ 広告なし ・ 完全無料</p>
+  <div class="cta-row">
+    <a class="btn btn-main" href="../">今すぐ使ってみる →</a>
+    <a class="btn btn-sub" href="#install">ホーム画面に追加する方法</a>
+  </div>
+  <p class="free-note">アプリストア不要。リンクを開くだけで使えます。</p>
+</div>
+
+<section class="wrap">
+  <h2>機能は<span class="em">これだけ</span>。だから続く。</h2>
+  <div class="features">
+    <div class="feature"><div class="ico">⚖️</div><h3>体重の記録</h3><p>1日1回入力するだけ。前回比とグラフを自動表示</p></div>
+    <div class="feature"><div class="ico">🏋️‍♀️</div><h3>トレーニング記録</h3><p>重量×回数。自重トレは回数だけ、有酸素は時間・距離で</p></div>
+    <div class="feature"><div class="ico">🎯</div><h3>目標と進捗</h3><p>「3ヶ月で−10kg」などの目標に対する達成率と残り日数</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>データは端末の中だけ</h3><p>サーバーに送信されません。CSV・レポートでいつでも書き出せます</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>さわって<span class="em">お試し</span>(これは本物のアプリです)</h2>
+  <div class="demo">
+    <div class="phone"><iframe src="../" title="WORKOUT LOGLOG デモ" loading="lazy"></iframe></div>
+  </div>
+</section>
+
+<section class="wrap" id="install">
+  <h2>スマホに<span class="em">インストール</span>(30秒)</h2>
+  <div class="steps">
+    <div class="step-card">
+      <h3>📱 iPhone</h3>
+      <ol>
+        <li><strong>Safari</strong> でアプリを開く</li>
+        <li>共有ボタン(□↑)をタップ</li>
+        <li>「<strong>ホーム画面に追加</strong>」をタップ</li>
+      </ol>
+      <p class="note">※ LINEやインスタから開いた場合は、いったんSafariで開き直してください。ホーム画面に追加すると、データが消えにくくなりオフラインでも使えます。</p>
+    </div>
+    <div class="step-card">
+      <h3>🤖 Android</h3>
+      <ol>
+        <li><strong>Chrome</strong> でアプリを開く</li>
+        <li>メニュー(︙)をタップ</li>
+        <li>「<strong>ホーム画面に追加</strong>」をタップ</li>
+      </ol>
+      <p class="note">※ 「アプリをインストール」と表示される場合もあります。どちらでもOKです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>ファイル版を<span class="em">無料ダウンロード</span></h2>
+  <div class="dl-box">
+    <p>アプリ全体がたった1つのHTMLファイル。<br>ダウンロードしておけば、パソコンでもネットが無くても、ブラウザで開くだけで使えます。</p>
+    <a class="btn btn-main" href="../download/workout-loglog.html" download="workout-loglog.html">⬇ 無料ダウンロード (HTMLファイル)</a>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>📣 フィードバック<span class="em">大歓迎</span></h2>
+  <div class="fb-box">
+    <p>「ここが使いにくい」「こんな機能がほしい」——<br>あなたの一言がこのアプリを育てます。</p>
+    <a class="btn btn-sub" href="mailto:hiroha0630@gmail.com?subject=WORKOUT%20LOGLOG%20%E3%81%B8%E3%81%AE%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF">💌 感想・要望・不具合を送る</a>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="legal">
+    <h3>免責事項</h3>
+    <p>本アプリは運動と体重の記録を目的としたツールであり、医学的な助言・診断・治療を提供するものではありません。健康に関する判断は医師等の専門家にご相談ください。本アプリの利用により生じたいかなる損害についても、開発者は責任を負いません。</p>
+    <h3>プライバシー</h3>
+    <p>本アプリはアカウント登録が不要で、入力されたデータはすべてお使いの端末内(ブラウザのローカルストレージ)にのみ保存されます。開発者を含む第三者のサーバーにデータが送信されることはありません。端末の変更・ブラウザデータの削除に備え、アプリ内の「設定 → バックアップを保存」のご利用をおすすめします。</p>
+  </div>
+</section>
+
+<footer>© 2026 WORKOUT LOGLOG</footer>
+
+</body>
+</html>
