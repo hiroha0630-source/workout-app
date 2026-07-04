@@ -327,12 +327,18 @@
       <button class="btn-ghost btn-danger" id="wipeAll">🗑 全データを削除</button>
     </div>
 
+    <div class="card" id="installCard">
+      <h2>📲 アプリとしてインストール</h2>
+      <button class="btn-ghost" id="installBtn" style="margin-bottom:4px">ホーム画面に追加する</button>
+      <div id="installHint" style="font-size:12px;color:var(--muted)"></div>
+    </div>
+
     <div class="card">
       <h2>📣 フィードバック</h2>
       <a class="btn-ghost" style="display:block;text-decoration:none;text-align:left;margin-bottom:0"
         href="mailto:hiroha0630@gmail.com?subject=WORKOUT%20LOGLOG%20%E3%81%B8%E3%81%AE%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF">💌 感想・要望・不具合を送る</a>
     </div>
-    <div class="ver">WORKOUT LOGLOG v1.4 ・ データはこの端末にのみ保存されます<br>本アプリは医学的な助言を提供するものではありません</div>
+    <div class="ver">WORKOUT LOGLOG v1.5 ・ データはこの端末にのみ保存されます<br>本アプリは医学的な助言を提供するものではありません</div>
   </section>
 </main>
 
@@ -1016,6 +1022,26 @@ document.getElementById('tplAdd').onclick = () => {
 document.getElementById('prefWeight').onchange = e => { prefs.weight = e.target.checked; savePrefs(); };
 document.getElementById('prefTemplates').onchange = e => { prefs.templates = e.target.checked; savePrefs(); };
 document.getElementById('prefGoal').onchange = e => { prefs.goal = e.target.checked; savePrefs(); };
+
+// ホーム画面へのインストール (Androidはネイティブのダイアログ、iOSは手順を表示)
+let deferredInstall = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredInstall = e; });
+(() => {
+  const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  if (standalone) { document.getElementById('installCard').style.display = 'none'; return; }
+  document.getElementById('installBtn').onclick = async () => {
+    const hint = document.getElementById('installHint');
+    if (deferredInstall) {
+      deferredInstall.prompt();
+      try { await deferredInstall.userChoice; } catch (e) {}
+      deferredInstall = null;
+    } else if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      hint.textContent = 'Safariの共有ボタン(□↑)をタップ →「ホーム画面に追加」でインストールできます';
+    } else {
+      hint.textContent = 'ブラウザのメニュー(︙)から「ホーム画面に追加」を選んでください';
+    }
+  };
+})();
 
 document.getElementById('expCsv').onclick = exportCSV;
 document.getElementById('expReport').onclick = copyReport;

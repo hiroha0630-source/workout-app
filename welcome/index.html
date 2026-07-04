@@ -7,6 +7,11 @@
 <meta name="theme-color" content="#faf6f2">
 <meta property="og:title" content="WORKOUT LOGLOG - いちばんシンプルな筋トレ・ダイエット記録アプリ">
 <meta property="og:description" content="登録不要・広告なし・完全無料。記録するだけ。データはあなたのスマホの中だけ。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://workout-loglog.com/welcome/">
+<meta property="og:image" content="https://workout-loglog.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="../icon-192.png">
 <title>WORKOUT LOGLOG - 無料のシンプル筋トレ・ダイエット記録アプリ</title>
 <style>
@@ -116,6 +121,9 @@
 
 <section class="wrap" id="install">
   <h2>スマホに<span class="em">インストール</span>(30秒)</h2>
+  <div style="text-align:center;margin-bottom:24px">
+    <button id="quickInstall" class="btn btn-main" style="display:none;border:none;cursor:pointer;font-family:inherit;font-size:16px">📲 いますぐインストール</button>
+  </div>
   <div class="steps">
     <div class="step-card">
       <h3>📱 iPhone</h3>
@@ -165,5 +173,23 @@
 
 <footer>© 2026 WORKOUT LOGLOG</footer>
 
+<script>
+// Android Chrome: ワンタップインストール (対応環境でのみボタンが現れる)
+let deferredInstall = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstall = e;
+  document.getElementById('quickInstall').style.display = 'inline-block';
+});
+document.getElementById('quickInstall').onclick = async () => {
+  if (!deferredInstall) return;
+  deferredInstall.prompt();
+  try { await deferredInstall.userChoice; } catch (e) {}
+  deferredInstall = null;
+};
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('../sw.js').catch(() => {});
+}
+</script>
 </body>
 </html>
